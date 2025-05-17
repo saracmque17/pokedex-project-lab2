@@ -27,14 +27,14 @@ Thumbs.db
 # Optional npm cache
 .npm/
 
-# Docker related (if you build volumes)
+# Docker related
 docker-volume/
 docker-compose.override.yml
 
-# Coverage reports (si usas tests con coverage)
+# Coverage reports
 coverage/
 
-# PM2 process logs (si llegaras a usar PM2)
+# PM2 process logs
 pids/
 *.pid
 *.seed
