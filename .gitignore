@@ -1,0 +1,44 @@
+# Node modules
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# dotenv files
+.env
+.env.*
+
+# Build files
+dist/
+build/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# IDE settings
+.vscode/
+.idea/
+
+# Optional npm cache
+.npm/
+
+# Docker related (if you build volumes)
+docker-volume/
+docker-compose.override.yml
+
+# Coverage reports (si usas tests con coverage)
+coverage/
+
+# PM2 process logs (si llegaras a usar PM2)
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Misc
+*.swp
