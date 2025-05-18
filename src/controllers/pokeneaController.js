@@ -1,22 +1,55 @@
-const pokeneas = require('../data/pokeneas');
 const os = require('os');
+const Pokenea = require('../models/pokenea');
+const pokeneasData = require('../data/pokeneas');
+const PokeneaInstantiator = require('../utils/instantiator');
 
-const getPokeneaJson  = (req, res) => {
-  const pokenea = pokeneas[Math.floor(Math.random() * pokeneas.length)];
-  const containerId = os.hostname();
+const pokeneasArray = [];
+PokeneaInstantiator.instantiatePokeneas(pokeneasData, pokeneasArray);
 
-  const response = {
-    id: pokenea.id,
-    nombre: pokenea.nombre,
-    altura: pokenea.altura,
-    habilidad: pokenea.habilidad,
-    contenedor: containerId
-  };
-
-  res.json(response);
+const getRandomPokenea = (pokeneas) => {
+  return pokeneas[Math.floor(Math.random() * pokeneas.length)];
 };
 
-module.exports = { 
-    getPokeneaJson
-    //getPokeneaImagen
+const pokeneaController = {
+  showJsonPokenea: (req, res) => {
+    try {
+      const pokenea = getRandomPokenea(pokeneasArray);
+      const response = {
+        id: pokenea.getId(),
+        name: pokenea.getName(),
+        height: pokenea.getHeight(),
+        ability: pokenea.getAbility(),
+        containerId: os.hostname()
+      };
+      res.json(response);
+    } catch (error) {
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  },
+
+  showImagePokenea: (req, res) => {
+  try {
+    const pokenea = getRandomPokenea(pokeneasArray);
+
+    res.render('pokenea/image', {
+      pokenea: { 
+        name: pokenea.getName(),
+        image: pokenea.getImage(),
+        phrase: pokenea.getPhilosophicalPhrase()
+      },
+      containerId: os.hostname()
+    });
+  } catch (error) {
+    console.error('Error al renderizar:', error);
+    res.status(500).send('Error al cargar la imagen');
+  }
+},
+
+  homePage: (req, res) => {
+    res.render('index', {
+      viewData: { message: "Hello, welcome to the Pokenea application!" }
+    });
+  }
 };
+
+module.exports = pokeneaController;
