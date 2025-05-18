@@ -40,8 +40,8 @@ const pokeneaController = {
       containerId: os.hostname()
     });
   } catch (error) {
-    console.error('Error al renderizar:', error);
-    res.status(500).send('Error al cargar la imagen');
+    console.error('Error rendering image:', error);
+    res.status(500).send('Error loading image');
   }
 },
 
