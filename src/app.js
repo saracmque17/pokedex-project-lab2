@@ -11,5 +11,5 @@ app.use('/pokenea', pokeneaRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Servidor listo en http://localhost:${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });
